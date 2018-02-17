@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
 
@@ -83,6 +85,17 @@ public class JsonCMain {
 		System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&");
 	}
 	
+	public void add(Integer key, String newValue) {
+		Map<Integer, List<String>> map = new LinkedHashMap< Integer, List<String>>();
+    List<String> currentValue = map.get(key);
+    if (currentValue == null) {
+        currentValue = new ArrayList<String>();
+        map.put(key, currentValue);
+    }
+    currentValue.add(newValue);
+    System.out.println(map.toString());
+  }
+	
 	protected void getInput() {
 		System.out.println("Input the following appropriately.\nUse key,value combination..\n\n");
 		System.out.println("You can start from below:\n");
@@ -91,6 +104,9 @@ public class JsonCMain {
 		this.keyValueList = new ArrayList<>(Arrays.asList(this.keyValuePairInput.split(",")));
 		// a,s,n,m,a,z,a,q,s,w,s,x,d,e,d,x,d,f,f,d,f,g,f,v,g,f,g,b,g,t,h,j,h,n,h,y,h,u,j,k,j,m,j,i,k,i,k,m,l,o,l,;,l
 		getKeyValuePairs(keyValueList);
+		
+		add(1, "a");
+		add(1, "b");
 	}
 	
 	public static void main(String[] args) {
